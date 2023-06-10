@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background Removal</title>
+</head>
+<body>
+    <h1>Background Removal</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload and Remove">
+    </form>
+    
+    {% if input_path %}
+        <h2>Input Image</h2>
+        <img src="{{ input_path }}" alt="Input Image">
+        
+        <h2>Output Image</h2>
+        <img src="{{ output_path }}" alt="Output Image">
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arkaplan Değiştirme</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        img {
+            margin-top: 20px;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arkaplan Değiştirme</h1>
+    <form action="/arkaplan-degistirme" method="POST" enctype="multipart/form-data">
+        Arkaplan<input type="file" name="image" accept="image/*" required>
+        Parfüm<input type="file" name="cisim" accept="image/*" required>
+        <button type="submit">Gönder</button>
+    </form>
+    <img id="result-image" src="" alt="Sonuç Görüntüsü">
+    <script>
+        const form = document.querySelector('form');
+        const resultImage = document.getElementById('result-image');
+    
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const response = await fetch('/arkaplan-degistirme', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                const blob = await response.blob();
+                resultImage.src = URL.createObjectURL(blob);
+            }
+        });
+    </script>
+    
+
+
+</body>
+</html>
+
+
